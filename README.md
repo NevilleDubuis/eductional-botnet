@@ -20,3 +20,8 @@ Sur un principe de 4 sprints de 2 semaines
 ### 4ème sprint
 - En tant que Bot je dois pouvoir infecter un ordinateur
 - En tant que Bot je dois pouvoir désinfecter un ordinateur
+
+## Installation du serveur Php
+
+- composer: https://getcomposer.org/download/
+- laravel : https://laravel.com/docs/5.4
