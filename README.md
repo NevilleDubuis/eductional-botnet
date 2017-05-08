@@ -25,6 +25,3 @@ Sur un principe de 4 sprints de 2 semaines
 
 - composer: https://getcomposer.org/download/
 - laravel : https://laravel.com/docs/5.4
-
-
-Test Thierry
