@@ -5,3 +5,11 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 .DS_Store
+
+
+src/web/vendor
+src/web/node_modules
+src/web/public/storage
+Homestead.yaml
+Homestead.json
+.env
