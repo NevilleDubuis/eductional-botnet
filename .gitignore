@@ -1,3 +1,4 @@
+# Web stuff
 assets/*
 !assets/.gitignore
 protected/runtime/*
@@ -5,11 +6,49 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 .DS_Store
-
-
 src/web/vendor
 src/web/node_modules
 src/web/public/storage
 Homestead.yaml
 Homestead.json
 .env
+
+
+# C++ objects and libs
+
+*.slo
+*.lo
+*.o
+*.a
+*.la
+*.lai
+*.so
+*.dll
+*.dylib
+
+# Qt-es
+
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+Makefile*
+*build-*
+
+# QtCreator
+
+*.autosave
+
+# QtCtreator Qml
+*.qmlproject.user
+*.qmlproject.user.*
+
+# QtCtreator CMake
+CMakeLists.txt.user*
