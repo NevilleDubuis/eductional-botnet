@@ -23,5 +23,25 @@ Sur un principe de 4 sprints de 2 semaines
 
 ## Installation du serveur Php
 
+### Liens utiles :
 - composer: https://getcomposer.org/download/
-- laravel : https://laravel.com/docs/5.4
+- laravel: https://laravel.com/docs/5.4
+
+### Dépendances
+- mysql/mariaDb: https://mariadb.org/
+
+### Pour lancer le serveur la première fois
+
+```sh
+composer install
+php artisan install
+cp .env.example .env
+php artisan key:generate
+```
+
+Allez faire la configuration dans le fichiers .env
+
+```sh
+php artisan migrate
+php artisan serve
+```
