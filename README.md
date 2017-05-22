@@ -1,4 +1,4 @@
-# eductional-botnet
+# educational-botnet
 Création d'une application qui permet d'éxécuter des tâches sur des ordinateurs via un agent.
 
 ## Liste des tâches et planification initiale
