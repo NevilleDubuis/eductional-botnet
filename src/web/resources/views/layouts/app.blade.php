@@ -43,7 +43,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                      @if (Auth::user()->isAdmin())
+                        <li><a href="{{ route('users') }}">Users</a></li>
+                      @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
