@@ -65,7 +65,7 @@ class UsersController extends Controller
    */
   public function create()
   {
-      //
+      return view('users/create');
   }
 
   /**
@@ -73,9 +73,14 @@ class UsersController extends Controller
    *
    * @return Response
    */
-  public function store()
+  public function store(Array $inputs)
   {
-      //
+    $user = new $this->user;
+    $user->password = bcrypt($inputs['password']);
+
+    $this->save($user, $inputs);
+
+    return $user;
   }
 
   /**
