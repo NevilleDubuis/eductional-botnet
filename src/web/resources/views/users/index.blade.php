@@ -35,6 +35,7 @@
                                         x
                                       @endif
                                     </strong></td>
+                                    <td><a href="{{ route('users.edit', [$user->id]) }}" class="btn btn-warning btn-block">Modifier</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
