@@ -4,19 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User as User;
+use App\Repositories\UserRepository;
 
 class UsersController extends Controller
 {
+
+  protected $userRepository;
+  protected $nbrPerPage = 4;
+
   /**
    * Create a new controller instance.
    *
    * @return void
    */
-  public function __construct()
-  {
+   public function __construct(UserRepository $userRepository)
+   {
       $this->middleware('auth');
-  }
+      $this->userRepository = $userRepository;
+   }
+
 
   /**
    * Show the application dashboard.
@@ -27,11 +33,13 @@ class UsersController extends Controller
   {
       $user = Auth::user();
       if ($user->isAdmin()) {
-        $users = User::all();
-        return view('users/index')->withUsers($users);
+        $users = $this->userRepository->getPaginate($this->nbrPerPage);
+        $links = $users->setPath('')->render();
+        return view('users/index', compact('users', 'links'));
       }
       else {
         return Response::html("", 404);
       }
   }
+
 }

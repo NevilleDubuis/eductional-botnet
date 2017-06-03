@@ -6,7 +6,7 @@
         <div class="col-md-12">
           <br>
 
-            <div class="col-sm-offset-4 col-sm-4">
+            <div class="col-sm-offset-2 col-sm-8">
                 @if(session()->has('ok'))
                     <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
                 @endif
@@ -19,8 +19,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nom</th>
-                                <th></th>
-                                <th></th>
+                                <th>email</th>
+                                <th>admin</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -29,20 +29,20 @@
                                 <tr>
                                     <td>{!! $user->id !!}</td>
                                     <td class="text-primary"><strong>{!! $user->name !!}</strong></td>
-                                    <td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-                                    <td>{!! link_to_route('user.edit', 'Modifier', [$user->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
-                                    <td>
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) !!}
-                                            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
-                                        {!! Form::close() !!}
-                                    </td>
+                                    <td class="text-primary"><strong>{!! $user->email !!}</strong></td>
+                                    <td class="text-primary"><strong>
+                                      @if($user->isAdmin())
+                                        x
+                                      @endif
+                                    </strong></td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                {!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-info pull-right']) !!}
-                {!! $links !!}
+
+
+
             </div>
 
 
