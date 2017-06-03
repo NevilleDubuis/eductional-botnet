@@ -97,7 +97,8 @@ class UsersController extends Controller
    */
   public function destroy($id)
   {
-      //
+      $this->userRepository->destroy($id);
+      return redirect()->route('users.index')->withOk("L'utilisateur a été supprimé.");
   }
 
 }

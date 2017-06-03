@@ -36,6 +36,11 @@
                                       @endif
                                     </strong></td>
                                     <td><a href="{{ route('users.edit', [$user->id]) }}" class="btn btn-warning btn-block">Modifier</a></td>
+                                    <td>
+                                      {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id]]) !!}
+                                        {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
+                                      {!! Form::close() !!}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
