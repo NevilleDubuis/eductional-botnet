@@ -12,11 +12,11 @@ class GroupRepository
         $this->group = $group;
     }
 
-    private function save(Group $group, Array $inputs)
-    {
-        
-        //$user->save();
-    }
+    // private function save(Group $group, Array $inputs)
+    // {
+    //
+    //     $user->save();
+    // }
 
     public function getPaginate($n)
     {
@@ -25,12 +25,11 @@ class GroupRepository
 
     public function store(Array $inputs)
     {
-        // $user = new $this->user;
-        //
-        // $user->password = bcrypt($inputs['password']);
-        // $this->save($user, $inputs);
-        //
-        // return $user;
+        $group = new $this->group;
+        $group->name = $inputs['name'];
+        $group->save();
+
+        return $group;
     }
 
     public function getById($id)

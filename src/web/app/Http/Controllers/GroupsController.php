@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupRepository;
 
+use App\Http\Requests\GroupCreateRequest;
+
+
 class groupsController extends Controller
 {
 
@@ -31,6 +34,28 @@ class groupsController extends Controller
 
     return view('groups/index', compact('groups', 'links'));
   }
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return Response
+   */
+  public function create()
+  {
+    $this->checkAdmin();
+    $users = \App\User::all();
+
+    return view('groups/create', compact('users'));
+  }
+
+  public function store(GroupCreateRequest $request)
+  {
+    $this->checkAdmin();
+    $this->groupRepository->store($request->all());
+
+    return redirect()->route('groups.index')->withOk("Le groupe a été créer.");
+  }
+
 
   private function checkAdmin()
   {

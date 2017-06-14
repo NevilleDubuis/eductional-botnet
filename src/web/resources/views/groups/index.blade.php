@@ -40,7 +40,7 @@
               </tbody>
             </table>
           </div>
-          <a href="{{ route('users.create') }}" class="btn btn-success btn-block">Créer utilisateur</a>
+          <a href="{{ route('groups.create') }}" class="btn btn-success btn-block">Créer un groupe</a>
         </div>
       </div>
     </div>
