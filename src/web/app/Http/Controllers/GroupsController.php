@@ -56,6 +56,17 @@ class groupsController extends Controller
     return redirect()->route('groups.index')->withOk("Le groupe a été créer.");
   }
 
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function destroy($id)
+  {
+    $this->groupRepository->destroy($id);
+    return redirect()->route('groups.index')->withOk("Le group a été supprimé.");
+  }
 
   private function checkAdmin()
   {

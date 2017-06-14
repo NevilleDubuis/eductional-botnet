@@ -21,7 +21,6 @@
                   <th>Nom</th>
                   <th></th>
                   <th></th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -31,8 +30,8 @@
                     <td class="text-primary"><strong>{!! $group->name !!}</strong></td>
                     <td><a href="{{ route('users.edit', [$group->id]) }}" class="btn btn-warning btn-block">Modifier</a></td>
                     <td>
-                      {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $group->id]]) !!}
-                        {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
+                      {!! Form::open(['method' => 'DELETE', 'route' => ['groups.destroy', $group->id]]) !!}
+                        {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce groupe ?\')']) !!}
                       {!! Form::close() !!}
                     </td>
                   </tr>
