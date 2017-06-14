@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use App\Repositories\UserRepository;
 
 use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\UserCreateRequest;
 
 class UsersController extends Controller
 {
 
   protected $userRepository;
-  protected $nbrPerPage = 4;
+  protected $nbrPerPage = 10;
 
   /**
    * Create a new controller instance.
@@ -33,29 +34,27 @@ class UsersController extends Controller
    */
   public function index()
   {
-      $user = Auth::user();
-      if ($user->isAdmin()) {
-        $users = $this->userRepository->getPaginate($this->nbrPerPage);
-        $links = $users->setPath('')->render();
-        return view('users/index', compact('users', 'links'));
-      }
-      else {
-        return Response::html("", 404);
-      }
+    $this->checkAdmin();
+    $users = $this->userRepository->getPaginate($this->nbrPerPage);
+    $links = $users->setPath('')->render();
+
+    return view('users/index', compact('users', 'links'));
   }
 
   public function edit($id)
   {
-      $user = $this->userRepository->getById($id);
+    $this->checkAdmin();
+    $user = $this->userRepository->getById($id);
 
-      return view('users/edit',  compact('user'));
+    return view('users/edit',  compact('user'));
   }
 
   public function update(UserUpdateRequest $request, $id)
   {
-      $this->userRepository->update($id, $request->all());
+    $this->checkAdmin();
+    $this->userRepository->update($id, $request->all());
 
-      return redirect()->route('users.index')->withOk("L'utilisateur " . $request->input('name') . " a été modifié.");
+    return redirect()->route('users.index')->withOk("L'utilisateur " . $request->input('name') . " a été modifié.");
   }
 
   /**
@@ -65,7 +64,9 @@ class UsersController extends Controller
    */
   public function create()
   {
-      return view('users/create');
+    $this->checkAdmin();
+
+    return view('users/create');
   }
 
   /**
@@ -73,14 +74,13 @@ class UsersController extends Controller
    *
    * @return Response
    */
-  public function store(Array $inputs)
+  public function store(UserCreateRequest $request)
   {
-    $user = new $this->user;
-    $user->password = bcrypt($inputs['password']);
+    $this->checkAdmin();
 
-    $this->save($user, $inputs);
+    $this->userRepository->store($request->all());
 
-    return $user;
+    return redirect()->route('users.index')->withOk("L'utilisateur a été créer.");
   }
 
   /**
@@ -91,7 +91,7 @@ class UsersController extends Controller
    */
   public function show($id)
   {
-      //
+
   }
 
   /**
@@ -102,8 +102,16 @@ class UsersController extends Controller
    */
   public function destroy($id)
   {
-      $this->userRepository->destroy($id);
-      return redirect()->route('users.index')->withOk("L'utilisateur a été supprimé.");
+    $this->userRepository->destroy($id);
+    return redirect()->route('users.index')->withOk("L'utilisateur a été supprimé.");
   }
 
+  private function checkAdmin()
+  {
+    // check user permission
+    $user = Auth::user();
+    if (!$user->isAdmin()) {
+      abort(404);
+    }
+  }
 }

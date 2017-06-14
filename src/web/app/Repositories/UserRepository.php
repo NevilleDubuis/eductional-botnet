@@ -29,6 +29,7 @@ class UserRepository
     public function store(Array $inputs)
     {
         $user = new $this->user;
+
         $user->password = bcrypt($inputs['password']);
         $this->save($user, $inputs);
 
