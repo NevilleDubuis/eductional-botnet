@@ -45,6 +45,7 @@
                     <ul class="nav navbar-nav">
                       @if (Auth::user() && Auth::user()->isAdmin())
                         <li><a href="{{ route('users.index') }}">Users</a></li>
+                        <li><a href="{{ route('groups.index') }}">Groups</a></li>
                       @endif
                     </ul>
 
