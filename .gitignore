@@ -53,6 +53,8 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user*
 
-# Misc
+# Visual Paradigm
 *.bak*
 *.vbak
+*.lck
+
