@@ -35,6 +35,7 @@
                         x
                       @endif
                     </strong></td>
+                    <td><a href="{{ route('users.show', [$user->id]) }}" class="btn btn-success btn-block">Voir</a></td>
                     <td><a href="{{ route('users.edit', [$user->id]) }}" class="btn btn-warning btn-block">Modifier</a></td>
                     <td>
                       {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id]]) !!}
@@ -47,6 +48,7 @@
             </table>
           </div>
           <a href="{{ route('users.create') }}" class="btn btn-success btn-block">Créer utilisateur</a>
+          {!! $links !!}
         </div>
       </div>
     </div>

@@ -12,11 +12,12 @@ class GroupRepository
         $this->group = $group;
     }
 
-    // private function save(Group $group, Array $inputs)
-    // {
-    //
-    //     $user->save();
-    // }
+    private function save(Group $group, Array $inputs)
+    {
+        $group->name = $inputs['name'];
+
+        $group->save();
+    }
 
     public function getPaginate($n)
     {

@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
 
   protected $userRepository;
-  protected $nbrPerPage = 10;
+  protected $nbrPerPage = 5;
 
   /**
    * Create a new controller instance.
@@ -91,7 +91,8 @@ class UsersController extends Controller
    */
   public function show($id)
   {
-
+    $user = $this->userRepository->getById($id);
+    return view('users.show',  compact('user'));
   }
 
   /**

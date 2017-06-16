@@ -45,3 +45,8 @@ Allez faire la configuration dans le fichiers .env
 php artisan migrate
 php artisan serve
 ```
+### Pour recréer la DB depuis le début et peupler la base
+```sh
+php artisan migrate:refresh
+php artisan db:seeds
+```

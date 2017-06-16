@@ -7,13 +7,14 @@ use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupRepository;
 
 use App\Http\Requests\GroupCreateRequest;
+use App\Http\Requests\GroupUpdateRequest;
 
 
 class groupsController extends Controller
 {
 
   protected $groupRepository;
-  protected $nbrPerPage = 10;
+  protected $nbrPerPage = 5;
 
   /**
    * Create a new controller instance.
@@ -35,6 +36,22 @@ class groupsController extends Controller
     return view('groups/index', compact('groups', 'links'));
   }
 
+  public function edit($id)
+  {
+    $this->checkAdmin();
+    $group = $this->groupRepository->getById($id);
+
+    return view('groups/edit',  compact('group'));
+  }
+
+  public function update(GroupUpdateRequest $request, $id)
+  {
+    $this->checkAdmin();
+    $this->groupRepository->update($id, $request->all());
+
+    return redirect()->route('groups.index')->withOk("Le groupe " . $request->input('name') . " a été modifié.");
+  }
+
   /**
    * Show the form for creating a new resource.
    *
@@ -54,6 +71,18 @@ class groupsController extends Controller
     $this->groupRepository->store($request->all());
 
     return redirect()->route('groups.index')->withOk("Le groupe a été créer.");
+  }
+
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function show($id)
+  {
+    $group = $this->groupRepository->getById($id);
+    return view('groups.show',  compact('group'));
   }
 
   /**

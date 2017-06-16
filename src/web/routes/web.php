@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users', 'UsersController');
 Route::resource('groups', 'GroupsController');
+
+
+Route::get('/home', 'HomeController@index')->name('home');

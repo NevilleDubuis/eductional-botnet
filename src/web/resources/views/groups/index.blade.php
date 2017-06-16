@@ -28,7 +28,8 @@
                   <tr>
                     <td>{!! $group->id !!}</td>
                     <td class="text-primary"><strong>{!! $group->name !!}</strong></td>
-                    <td><a href="{{ route('users.edit', [$group->id]) }}" class="btn btn-warning btn-block">Modifier</a></td>
+                    <td><a href="{{ route('groups.show', [$group->id]) }}" class="btn btn-success btn-block">Voir</a></td>
+                    <td><a href="{{ route('groups.edit', [$group->id]) }}" class="btn btn-warning btn-block">Modifier</a></td>
                     <td>
                       {!! Form::open(['method' => 'DELETE', 'route' => ['groups.destroy', $group->id]]) !!}
                         {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce groupe ?\')']) !!}
@@ -40,6 +41,7 @@
             </table>
           </div>
           <a href="{{ route('groups.create') }}" class="btn btn-success btn-block">Créer un groupe</a>
+          {!! $links !!}
         </div>
       </div>
     </div>
