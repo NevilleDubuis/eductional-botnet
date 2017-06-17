@@ -2,6 +2,8 @@
 namespace App\Repositories;
 
 use App\User;
+use App\Group;
+use Illuminate\Support\Str;
 
 class UserRepository
 {
@@ -24,6 +26,19 @@ class UserRepository
     public function getPaginate($n)
     {
         return $this->user->paginate($n);
+    }
+
+    private function queryWithGroup() {
+
+      return $this->user->with('groups')
+        ->orderBy('users.id', 'desc');
+    }
+
+    public function getWithGroupForPaginate(Group $group, $n) {
+      return $this->queryWithGroup()
+        ->whereHas('groups', function($q) use($group){
+          $q->where('groups.id', $group);
+        })->paginate($n);
     }
 
     public function store(Array $inputs)

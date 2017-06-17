@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
+
 use Illuminate\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+
 use App\Repositories\UserRepository;
+use App\Repositories\GroupRepository;
 
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Requests\UserCreateRequest;
+
 
 class UsersController extends Controller
 {
@@ -39,6 +44,18 @@ class UsersController extends Controller
     $links = $users->setPath('')->render();
 
     return view('users/index', compact('users', 'links'));
+  }
+
+  /**
+   * Lister les utilisateur selon un id de groupe
+   *
+   * @return
+   */
+  public function indexGroup($group) {
+    $users = $this->userRepository->getWithGroupForPaginate($group, $this->nbrPerPage);
+    $links = $users->render();
+
+    return view('users.indexGroup', compact('users', 'links', 'group'));
   }
 
   public function edit($id)

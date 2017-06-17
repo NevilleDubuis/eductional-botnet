@@ -17,4 +17,17 @@ class Group extends Model
   protected $fillable = [
     'name',
   ];
+
+  /**
+   * Liaison n:n avec users
+   *
+   * @var array
+   */
+   /*
+   public function users() {
+
+     return this->belongToMany('App\User');
+   }
+   */
+
 }

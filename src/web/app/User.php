@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -30,4 +31,16 @@ class User extends Authenticatable
   public function isAdmin () {
     return $this->admin;
   }
+
+  /**
+   * Liaison n:n avec groups
+   *
+   * @var array
+   */
+   /*
+   public function groups() {
+
+     return this->belongToMany('App\Group');
+   }
+   */
 }

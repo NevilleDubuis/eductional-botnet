@@ -21,5 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users', 'UsersController');
 Route::resource('groups', 'GroupsController');
 
+Route::get('groups/{group}/users', ['as' =>'groups.users', 'UsersController@indexGroup']);
+//Route::get('groups/{group}', 'UsersController@indexGroup');
 
 Route::get('/home', 'HomeController@index')->name('home');
