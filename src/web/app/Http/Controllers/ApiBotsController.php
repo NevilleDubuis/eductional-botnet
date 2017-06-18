@@ -51,7 +51,8 @@ class ApiBotsController extends Controller
          }
         break;
       case 32:
-
+        $bot = $this->storeInformation($data, $bot);
+        return response()->json([]);
         break;
     }
   }
@@ -59,10 +60,21 @@ class ApiBotsController extends Controller
   private function firstContact(Array $data, Bot $bot = null)
   {
     if ($bot) {
-      $bot = $this->botRepository->update(['state' => 'connected']);
+      $this->botRepository->update(['state' => 'connected'], $bot->id);
     } else {
       $bot = $this->botRepository->create(['mac_address' => $data['payload']['macAddress']]);
     }
+
+    return $bot;
+  }
+
+  private function storeInformation(Array $data, Bot $bot)
+  {
+    $bot = $this->botRepository->update([
+      'name' => $data['payload']['computerName'],
+      'cpu' => $data['payload']['cpu'],
+      'operating_system' => $data['payload']['operatingSystem'],
+    ], $bot->id);
 
     return $bot;
   }

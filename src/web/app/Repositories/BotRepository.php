@@ -22,7 +22,7 @@ class BotRepository
 
     $bot->mac_address = $data['mac_address'];
     $bot->state = 'connected';
-    $bot->save;
+    $bot->save();
 
     return $bot;
   }
@@ -52,13 +52,12 @@ class BotRepository
   /**
     * @param $attribute
     * @param $value
-    * @param array $columns
     * @return mixed
   */
-  public function findBy($attribute, $value, $columns = array('*'))
+  public function findBy($attribute, $value)
   {
     return $this->bot
       ->where($attribute, '=', $value)
-      ->first($columns);
+      ->first();
   }
 }
