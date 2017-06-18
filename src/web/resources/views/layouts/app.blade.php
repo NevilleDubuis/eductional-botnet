@@ -47,6 +47,7 @@
                         <li><a href="{{ route('users.index') }}">Users</a></li>
                         <li><a href="{{ route('groups.index') }}">Groups</a></li>
                       @endif
+                      <li><a href="{{ route('bots.index') }}">Bots</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

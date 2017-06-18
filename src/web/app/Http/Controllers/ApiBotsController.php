@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 
 use App\Repositories\BotRepository;
 
-use Log;
-
 class ApiBotsController extends Controller
 {
 

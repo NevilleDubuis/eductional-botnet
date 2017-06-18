@@ -14,6 +14,14 @@ class BotRepository
   }
 
   /**
+    * @param array $columns
+    * @return mixed
+  */
+  public function all() {
+    return $this->bot->get();
+  }
+
+  /**
     * @param array $data
     * @return mixed
   */
