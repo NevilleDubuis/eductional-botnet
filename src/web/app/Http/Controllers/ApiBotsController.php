@@ -39,6 +39,7 @@ class ApiBotsController extends Controller
     $bot = $this->botRepository->findBy('mac_address', $macAddress);
 
     switch ($opcode) {
+      case 16:
       case 17:
         $bot = $this->firstContact($data, $bot);
 
