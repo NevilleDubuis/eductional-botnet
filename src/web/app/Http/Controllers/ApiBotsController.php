@@ -43,7 +43,7 @@ class ApiBotsController extends Controller
 
         if (!$bot->name) {
           return response()->json([
-            'optcode' => 256
+            'opcode' => 256
           ]);
         } else {
           return response()->json([]);
