@@ -36,30 +36,49 @@ class ApiBotsController extends Controller
     $macAddress = $data['payload']['macAddress'];
     $bot = $this->botRepository->findBy('mac_address', $macAddress);
 
-    switch ($opcode) {
-      case 16:
-      case 17:
-        $bot = $this->firstContact($data, $bot);
 
-        if (!$bot->name) {
-          return response()->json([
-            'opcode' => 256
-          ]);
-        } else {
-          return response()->json([]);
-         }
-        break;
-      case 32:
-        $bot = $this->storeInformation($data, $bot);
-        return response()->json([]);
-        break;
+    if ($opcode == 16 || $opcode == 17) {
+      $bot = $this->heartBeat($data, $bot);
+
+      if ($bot->needInformation()) {
+        return $this->askInformationReponse();
+      } else {
+        return $this->successResponse();
+      }
+    } elseif ($opcode == 32) {
+      $bot = $this->storeInformation($data, $bot);
+      return $this->successResponse();
+    } else {
+      return $this->badRequestResponse();
     }
   }
 
-  private function firstContact(Array $data, Bot $bot = null)
+  protected function askInformationReponse()
+  {
+    return response()->json([
+      'opcode' => 256
+    ]);
+  }
+
+  protected function badRequestResponse()
+  {
+    return response()->json([], 400);
+  }
+
+  protected function successResponse()
+  {
+    return response()->json([]);
+  }
+
+  private function heartBeat(Array $data, Bot $bot = null)
   {
     if ($bot) {
-      $this->botRepository->update(['state' => 'connected'], $bot->id);
+      if ($data['opcode'] == 16) {
+        $this->botRepository->update(['state' => 'connected'], $bot->id);
+      } else {
+        $bot->touch();
+      }
+
     } else {
       $bot = $this->botRepository->create(['mac_address' => $data['payload']['macAddress']]);
     }

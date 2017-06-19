@@ -12,4 +12,9 @@ class Bot extends Model
     * @var array
     */
    protected $fillable = ['mac_address', 'name', 'cpu', 'operating_system', 'state'];
+
+   public function needInformation()
+   {
+      return (!$this->name);
+   }
 }
