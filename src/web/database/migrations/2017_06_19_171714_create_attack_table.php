@@ -39,7 +39,6 @@ class CreateAttackTable extends Migration
     {
       Schema::table('attacks', function (Blueprint $table) {
           $table->dropForeign('attacks_user_id_foreign');
-          $table->dropForeign('attacks_method_id_foreign');
       });
       Schema::dropIfExists('attacks');
     }
