@@ -16,13 +16,11 @@ class CreateAttackTable extends Migration
       Schema::create('attacks', function (Blueprint $table) {
         $table->increments('id');
         $table->string('name')->nullable();
-        $table->string('target')->nullable();
+        $table->string('target');
         $table->integer('port');
         $table->datetime('start');
         $table->datetime('finish');
-        $table->foreign('method_id')->references('id')->on('methods')
-            ->onDelete('restrict')
-            ->onUpdate('restrict');
+        $table->integer('user_id')->unsigned();
         $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('restrict')
             ->onUpdate('restrict');
