@@ -40,15 +40,13 @@
               </tbody>
             </table>
           </div>
-          <!--
-          <a href="{{ route('users.create') }}" class="btn btn-success btn-block">Créer utilisateur</a>
-        -->
           {!! $links !!}
-        </div>
+        </br>
         <a href="javascript:history.back()" class="btn btn-primary">
           <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
         </a>
-      </div>
+        </div>
+      </div>>
     </div>
   </div>
 @endsection
