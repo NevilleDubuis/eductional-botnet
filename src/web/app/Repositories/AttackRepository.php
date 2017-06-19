@@ -62,4 +62,9 @@ class AttackRepository
       ->where($attribute, '=', $value)
       ->first();
   }
+
+  public function getPaginate($n)
+  {
+      return $this->attack->paginate($n);
+  }
 }

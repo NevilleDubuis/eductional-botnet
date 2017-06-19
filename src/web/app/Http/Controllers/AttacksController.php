@@ -12,6 +12,7 @@ class AttacksController extends Controller
 {
 
   protected $attackRepository;
+  protected $nbrPerPage = 5;
 
   /**
    * Create a new controller instance.
@@ -31,7 +32,7 @@ class AttacksController extends Controller
    */
   public function index()
   {
-    $attacks = Attack::with(array('user'))->get();
+    $attacks = $this->attackRepository->getPaginate($this->nbrPerPage);
 
     return view('attacks/index', compact('attacks'));
   }
