@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupRepository;
@@ -40,8 +42,9 @@ class groupsController extends Controller
   {
     $this->checkAdmin();
     $group = $this->groupRepository->getById($id);
+    $users = $this->groupRepository->getUsers();
 
-    return view('groups/edit',  compact('group'));
+    return view('groups/edit',  compact('group', 'users'));
   }
 
   public function update(GroupUpdateRequest $request, $id)
@@ -60,7 +63,7 @@ class groupsController extends Controller
   public function create()
   {
     $this->checkAdmin();
-    $users = \App\User::all();
+    $users = $this->groupRepository->getUsers();
 
     return view('groups/create', compact('users'));
   }
@@ -69,6 +72,7 @@ class groupsController extends Controller
   {
     $this->checkAdmin();
     $this->groupRepository->store($request->all());
+
 
     return redirect()->route('groups.index')->withOk("Le groupe a été créer.");
   }

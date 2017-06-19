@@ -13,6 +13,24 @@
             {!! $errors->first('name', '<small class="help-block">:message</small>') !!}
           </div>
           <div class="form-group">
+            <table>
+              <thead>
+                <tr>
+                  <th>Membre(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+              @foreach ($users as $user)
+                <tr>
+                  <td class="checkbox">
+                      <label>
+                        {{ Form::checkbox('users[]', $user->id, null)}}{!! $user->name !!}
+                    </label>
+                  </td>
+                </tr>
+              @endforeach
+              </tbody>
+            </table>
           </div>
             {!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
           {!! Form::close() !!}

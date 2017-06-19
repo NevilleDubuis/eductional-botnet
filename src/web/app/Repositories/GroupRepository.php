@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Group;
+use App\User;
 
 class GroupRepository
 {
@@ -30,17 +31,26 @@ class GroupRepository
         $group->name = $inputs['name'];
         $group->save();
 
+        $group->users()->sync($inputs['users']);
+
         return $group;
+    }
+
+    public function getUsers()
+    {
+      return User::all();
     }
 
     public function getById($id)
     {
-        return $this->group->findOrFail($id);
+      return $this->group->findOrFail($id);
     }
 
     public function update($id, Array $inputs)
     {
-        $this->save($this->getById($id), $inputs);
+      $group = $this->getById($id);
+      $this->save($group, $inputs);
+      $group->users()->sync($inputs['users']);
     }
 
     public function destroy($id)
