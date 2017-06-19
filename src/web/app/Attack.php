@@ -20,9 +20,25 @@ class Attack extends Model
     return $this->hasMany('App\Bot');
   }
 
-   public function user() {
+  /**
+  * Get the user that create the attack.
+  *
+  * @return App\User;
+  */
+  public function user() {
 
-     return $this->belongsTo('App\User');
+   return $this->belongsTo('App\User');
 
-   }
+  }
+
+  /**
+  * Get the attack's method.
+  *
+  * @return App\Method;
+  */
+  public function method() {
+
+   return $this->belongsTo('App\Method');
+
+  }
 }

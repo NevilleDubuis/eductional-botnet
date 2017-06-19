@@ -19,7 +19,8 @@
                   <th>Hacker</th>
                   <th>Cible</th>
                   <th>Port</th>
-                  <th>bots_number</th>
+                  <th>Nombre de bots</th>
+                  <th>Méthode</th>
                   <th>Début</th>
                   <th>Fin</th>
                   <th>Modifiée le</th>
@@ -35,6 +36,7 @@
                     <td class="text-primary"><strong>{{ $attack->target }}</strong></td>
                     <td class="text-primary"><strong>{{ $attack->port }}</strong></td>
                     <td class="text-primary"><strong>{{ $attack->bots_number }}</strong></td>
+                    <td class="text-primary"><strong>{{ $attack->method->name }}</strong></td>
                     <td class="text-primary"><strong>{{ $attack->start }}</strong></td>
                     <td class="text-primary"><strong>{{ $attack->finish }}</strong></td>
                     <td class="text-primary"><strong>{{ $attack->updated_at }}</strong></td>

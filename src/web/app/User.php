@@ -47,7 +47,7 @@ class User extends Authenticatable
    /**
     * Liaison 1:n avec attacks
     *
-    * @var array
+    * @return App\Attack;
     */
     public function attacks()
     {
