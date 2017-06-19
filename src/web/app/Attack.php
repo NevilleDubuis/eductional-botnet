@@ -19,4 +19,10 @@ class Attack extends Model
   {
     return $this->hasMany('App\Bot');
   }
+
+   public function user() {
+
+     return $this->belongsTo('App\User');
+
+   }
 }

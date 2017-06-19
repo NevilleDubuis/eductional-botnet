@@ -39,10 +39,21 @@ class User extends Authenticatable
    *
    * @var array
    */
-
    public function groups()
    {
      return $this->belongsToMany('App\Group', 'users_groups', 'user_id', 'group_id');
    }
+
+   /**
+    * Liaison 1:n avec attacks
+    *
+    * @var array
+    */
+    public function attacks()
+    {
+      return $this->hasMany('App\Attack');
+    }
+
+
 
 }

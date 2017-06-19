@@ -23,6 +23,7 @@ Route::resource('groups', 'GroupsController');
 Route::resource('bots', 'BotsController', ['only' => [
   'index', 'show'
 ]]);
+Route::resource('attacks','AttacksController');
 
 Route::get('/groups/{group}/users',  'UsersController@indexGroup')->name('groups.users');
 Route::get('/home', 'HomeController@index')->name('home');
