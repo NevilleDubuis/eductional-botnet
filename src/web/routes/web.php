@@ -24,7 +24,8 @@ Route::resource('bots', 'BotsController', ['only' => [
   'index', 'show'
 ]]);
 
-Route::get('groups/{group}/users', ['as' =>'groups.users', 'UsersController@indexGroup']);
+Route::get('/groups/{group}/users',  'UsersController@indexGroup')->name('groups.users');
+//Route::get('groups/{group}', ['as' =>'groups.users', 'UsersController@indexGroup']);
 //Route::get('groups/{group}', 'UsersController@indexGroup');
 
 Route::get('/home', 'HomeController@index')->name('home');

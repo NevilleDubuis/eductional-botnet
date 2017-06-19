@@ -34,9 +34,11 @@ class UserRepository
         ->orderBy('users.id', 'desc');
     }
 
-    public function getWithGroupForPaginate(Group $group, $n) {
+    public function getWithGroupForPaginate($group, $n)
+    {
       return $this->queryWithGroup()
-        ->whereHas('groups', function($q) use($group){
+        ->whereHas('groups', function($q) use($group)
+        {
           $q->where('groups.id', $group);
         })->paginate($n);
     }
