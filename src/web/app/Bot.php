@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Attack;
 
 class Bot extends Model
 {
@@ -16,5 +17,10 @@ class Bot extends Model
    public function needInformation()
    {
       return (!$this->name);
+   }
+
+   public function attack()
+   {
+     return $this->belongsTo('App\Attack', 'attack_id');
    }
 }

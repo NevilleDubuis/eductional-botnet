@@ -120,7 +120,7 @@ return [
     |
     */
 
-    'log' => env('errorlog', 'single'),
+    'log' => env('errorlog', 'errorlog'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
