@@ -19,6 +19,8 @@
                 <tr>
                   <th>#</th>
                   <th>Nom</th>
+                  <th>Max bots</th>
+                  <th></th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -28,8 +30,9 @@
                   <tr>
                     <td>{!! $group->id !!}</td>
                     <td class="text-primary"><strong>{!! $group->name !!}</strong></td>
+                    <td class="text-primary"><strong>{!! $group->max_bot !!}</strong></td>
                     <td><a href="{{ route('groups.show', [$group->id]) }}" class="btn btn-success btn-block">Voir</a></td>
-                    <td><a href="{{ route('groups.users', [$group->id]) }}" class="btn btn-success btn-block">Voir membres</a></td>
+                    <td><a href="{{ route('groups.users', [$group->id]) }}" class="btn btn-success btn-block">Voir users</a></td>
                     <td><a href="{{ route('groups.edit', [$group->id]) }}" class="btn btn-warning btn-block">Modifier</a></td>
                     <td>
                       {!! Form::open(['method' => 'DELETE', 'route' => ['groups.destroy', $group->id]]) !!}

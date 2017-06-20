@@ -12,6 +12,10 @@
             {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nom']) !!}
             {!! $errors->first('name', '<small class="help-block">:message</small>') !!}
           </div>
+          <div class="form-group {!! $errors->has('max_bot') ? 'has-error' : '' !!}">
+            {!! Form::number('max_bot', null, ['class' => 'form-control', 'placeholder' => 'Max_bot']) !!}
+            {!! $errors->first('max_bot', '<small class="help-block">:message</small>') !!}
+          </div>
           <div class="form-group">
             <table>
               <thead>

@@ -16,6 +16,7 @@ class GroupRepository
     private function save(Group $group, Array $inputs)
     {
         $group->name = $inputs['name'];
+        $group->max_bot = $inputs['max_bot'];
 
         $group->save();
     }
