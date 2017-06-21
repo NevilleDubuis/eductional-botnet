@@ -69,11 +69,24 @@ class AttacksController extends Controller
   }
 
   /**
-  * Get the current user id
+  * Delete attacks
   *
-  * @return user id
+  * @return Response
+  */
+
+  public function destroy($id)
+  {
+    $this->attackRepository->destroy($id);
+    return redirect()->route('attacks.index')->withOk("L'attaque a été supprimé.");
+  }
+
+  /**
+  * Get the current user
+  *
+  * @return user
   */
   private function getCurrentUser() {
     return Auth::user();
   }
+
 }

@@ -102,4 +102,9 @@ class AttackRepository
 
       return $attack;
   }
+
+  public function destroy($id)
+  {
+      $this->getById($id)->delete();
+  }
 }

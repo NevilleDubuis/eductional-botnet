@@ -40,6 +40,11 @@
                     <td class="text-primary"><strong>{{ $attack->start }}</strong></td>
                     <td class="text-primary"><strong>{{ $attack->finish }}</strong></td>
                     <td class="text-primary"><strong>{{ $attack->updated_at }}</strong></td>
+                    <td>
+                      {!! Form::open(['method' => 'DELETE', 'route' => ['attacks.destroy', $attack->id]]) !!}
+                        {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cette attaque ?\')']) !!}
+                      {!! Form::close() !!}
+                    </td>
                   </tr>
                 @endforeach
               </tbody>
