@@ -79,4 +79,24 @@ class AttackRepository
   {
       return $this->attack->paginate($n);
   }
+
+  private function save(Attack $attack, Array $inputs)
+  {
+      $attack->name = $inputs['name'];
+      $attack->target = $inputs['target'];
+      $attack->port = $inputs['port'];
+      $attack->method_id = $inputs['method_selected'];
+      $attack->start = $inputs['start'];
+      $attack->duration = $inputs['duration'];
+
+      $attack->save();
+  }
+
+  public function store(Array $inputs)
+  {
+      $attack = new $this->attack;
+      $this->save($attack, $inputs);
+
+      return $attack;
+  }
 }
