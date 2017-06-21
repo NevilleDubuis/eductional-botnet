@@ -43,6 +43,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+                      <li><a href="{{ url('/home') }}">Home</a></li>
                       @if (Auth::user() && Auth::user()->isAdmin())
                         <li><a href="{{ route('users.index') }}">Users</a></li>
                         <li><a href="{{ route('groups.index') }}">Groups</a></li>

@@ -34,7 +34,7 @@ class Attack extends Model
   */
   public function scopeRunning($query)
   {
-    return $query->whereNotNull('start')->whereNull('end');
+    return $query->whereNotNull('start')->whereNull('finish');
   }
 
   /**
@@ -45,7 +45,7 @@ class Attack extends Model
   */
   public function scopeFinnished($query)
   {
-    return $query->whereNotNull('start')->whereNotNull('end');
+    return $query->whereNotNull('start')->whereNotNull('finish');
   }
 
   public function bots()

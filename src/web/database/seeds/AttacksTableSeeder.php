@@ -26,7 +26,8 @@ class AttacksTableSeeder extends Seeder
           'method_id' => '1',
           'bots_number' => rand(3568,10000000),
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-          'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+          'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+          'duration' => 10,
         ]);
       }
     }

@@ -18,8 +18,20 @@ class AttackRepository
     * @return mixed
   */
   public function all() {
-    return $this->attack->get();
+    return $this->attack->all();
   }
+
+  public function running()
+  {
+    return $this->attack->running();
+  }
+
+
+  public function waiting()
+  {
+    return $this->attack->waiting();
+  }
+
 
   /**
     * @param array $data
