@@ -80,7 +80,7 @@ class ApiBotsController extends Controller
       }
 
     } else {
-      $bot = $this->botRepository->create(['mac_address' => $data['payload']['macAddress']]);
+      $bot = $this->botRepository->create(['mac_address' => $data['payload']['macAddress'], 'state' => 'connected']);
     }
 
     return $bot;

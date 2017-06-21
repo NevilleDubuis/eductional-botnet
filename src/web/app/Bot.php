@@ -51,7 +51,7 @@ class Bot extends Model
   */
   public function scopeCurrentlyConnected($query)
   {
-    return $query->ofState(['connected', 'attacking']);
+    return $query->where('state', 'connected')->orWhere('state', 'attacking');
   }
 
   /**
