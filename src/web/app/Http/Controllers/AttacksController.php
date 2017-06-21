@@ -12,7 +12,7 @@ class AttacksController extends Controller
 {
 
   protected $attackRepository;
-  protected $nbrPerPage = 5;
+  protected $nbrPerPage = 10;
 
   /**
    * Create a new controller instance.
@@ -33,7 +33,8 @@ class AttacksController extends Controller
   public function index()
   {
     $attacks = $this->attackRepository->getPaginate($this->nbrPerPage);
+    $links = $attacks->setPath('')->render();
 
-    return view('attacks/index', compact('attacks'));
+    return view('attacks/index', compact('attacks', 'links'));
   }
 }

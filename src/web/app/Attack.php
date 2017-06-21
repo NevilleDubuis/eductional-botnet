@@ -12,7 +12,7 @@ class Attack extends Model
     *
     * @var array
     */
-   protected $fillable = ['name', 'target', 'port', 'start', 'finish', 'bots_number'];
+   protected $fillable = ['name', 'target', 'port', 'start', 'finish', 'bots_number', 'duration'];
 
 
   public function bots()

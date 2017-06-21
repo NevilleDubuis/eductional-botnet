@@ -45,6 +45,8 @@
               </tbody>
             </table>
           </div>
+          <a href="{{ route('attacks.create') }}" class="btn btn-success btn-block">Créer une attaque</a>
+          {!! $links !!}
         </div>
       </div>
     </div>
