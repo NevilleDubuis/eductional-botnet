@@ -3,6 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
+use Carbon\Carbon;
+
+use Config;
+
 use App\Attack;
 
 class Bot extends Model
@@ -13,6 +18,30 @@ class Bot extends Model
   * @var array
   */
   protected $fillable = ['mac_address', 'name', 'cpu', 'operating_system', 'state'];
+
+  /**
+  * return max time before the bot is considered disconncted
+  *
+  * @return Ingterger
+  */
+  public static function maxSecondsBeforeDisconnect()
+  {
+    return 5 * Config::get('settings.seconds_between_beats');
+  }
+
+  /**
+  * reset bots status if their considered disconnected
+  */
+  public static function resetBotsConnection()
+  {
+    Bot::where(
+      'updated_at',
+      '<',
+      Carbon::now()->subSeconds(Bot::maxSecondsBeforeDisconnect())->toDateTimeString()
+    )
+    ->currentlyConnected()
+    ->update(['state' => 'disconnected', 'attack_id' => null]);
+  }
 
   /**
   * Scope a query to get only currently connected bots.
