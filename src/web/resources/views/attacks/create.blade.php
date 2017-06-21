@@ -25,6 +25,10 @@
               </br>
               @endforeach
           </div>
+          <div class="form-group {{ $errors->has('bots_number') ? 'has-error' : '' }}">
+            {{ Form::number('bots_number',null ,['class' => 'form-control', 'placeholder' => 'Nombre de bots']) }}
+            {{ $errors->first('bots_number', '<small class="help-block">:message</small>') }}
+          </div>
           <div class="form-group {{ $errors->has('start') ? 'has-error' : '' }}">
             {{ Form::date('start', \Carbon\Carbon::now(),['class' => 'form-control']) }}
             {{ $errors->first('start', '<small class="help-block">:message</small>') }}

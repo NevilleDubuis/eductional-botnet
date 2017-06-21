@@ -28,7 +28,8 @@ class AttackCreateRequest extends FormRequest
       'target' => 'required|max:255',
       'port' => 'required|alpha_num',
       'start' => 'required|date|after:now',
-      'duration' => 'required|alpha_num'
+      'duration' => 'required|alpha_num',
+      'bots_number' => 'required|alpha_num'
     ];
   }
 }

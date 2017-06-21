@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Attack;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Repositories\AttackRepository;
 use App\Repositories\MethodRepository;
@@ -62,8 +63,17 @@ class AttacksController extends Controller
   */
   public function store(AttackCreateRequest $request)
   {
-    $this->attackRepository->store($request->all());
+    $this->attackRepository->store($request->all(), $this->getCurrentUser());
 
     return redirect()->route('attacks.index')->withOk("L'attaque a été créée.");
+  }
+
+  /**
+  * Get the current user id
+  *
+  * @return user id
+  */
+  private function getCurrentUser() {
+    return Auth::user();
   }
 }

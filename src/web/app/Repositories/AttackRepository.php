@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Attack;
+use App\User;
 use Illuminate\Support\Str;
 
 class AttackRepository
@@ -88,13 +89,15 @@ class AttackRepository
       $attack->method_id = $inputs['method_selected'];
       $attack->start = $inputs['start'];
       $attack->duration = $inputs['duration'];
+      $attack->bots_number = $inputs['bots_number'];
 
       $attack->save();
   }
 
-  public function store(Array $inputs)
+  public function store(Array $inputs, User $user)
   {
       $attack = new $this->attack;
+      $attack->user_id = $user->id;
       $this->save($attack, $inputs);
 
       return $attack;
