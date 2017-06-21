@@ -7,6 +7,7 @@
     <div class="panel-heading">Fiche d'un groupe</div>
     <div class="panel-body">
       <p>Nom : {{ $group->name }}</p>
+      <p>Nbre max de bots : {{ $group->max_bot }}</p>
     </div>
   </div>
   <a href="javascript:history.back()" class="btn btn-primary">
