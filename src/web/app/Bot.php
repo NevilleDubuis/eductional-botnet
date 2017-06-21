@@ -15,14 +15,25 @@ class Bot extends Model
   protected $fillable = ['mac_address', 'name', 'cpu', 'operating_system', 'state'];
 
   /**
-  * Scope a query to get only connected bots.
+  * Scope a query to get only currently connected bots.
   *
   * @param \Illuminate\Database\Eloquent\Builder $query
   * @return \Illuminate\Database\Eloquent\Builder
   */
-  public function scopeConnected($query)
+  public function scopeCurrentlyConnected($query)
   {
-    return $query->where('state', '!=', 'disconnected');
+    return $query->ofState(['connected', 'attacking']);
+  }
+
+  /**
+  * Scope a query to get only attacking bots.
+  *
+  * @param \Illuminate\Database\Eloquent\Builder $query
+  * @return \Illuminate\Database\Eloquent\Builder
+  */
+  public function scopeAttacking($query)
+  {
+    return $query->ofState('attacking');
   }
 
   /**
@@ -33,14 +44,14 @@ class Bot extends Model
   */
   public function scopeDisconnected($query)
   {
-    return $query->ofState('disconnected');
+    return $query->ofState(['disconnected']);
   }
 
   /**
-  * Scope a query to only include users of a given type.
+  * Scope a query to get only bots with states.
   *
   * @param \Illuminate\Database\Eloquent\Builder $query
-  * @param mixed $type
+  * @param mixed $state
   * @return \Illuminate\Database\Eloquent\Builder
   */
   public function scopeOfState($query, $state)
