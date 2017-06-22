@@ -20,13 +20,11 @@ class AttacksTableSeeder extends Seeder
           'name' => 'Attack_' .$i,
           'target' => '192.168.12.157',
           'port'  => '80',
-          'start' => Carbon::now('Europe/London')->toDateTimeString(),
-          'finish' => Carbon::tomorrow('Europe/London')->toDateTimeString(),
+          'start' => Carbon::now(),
+          'finish' => Carbon::tomorrow(),
           'user_id' => rand(1,9),
           'method_id' => '1',
           'bots_number' => rand(3568,10000000),
-          'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-          'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
           'duration' => 10,
         ]);
       }

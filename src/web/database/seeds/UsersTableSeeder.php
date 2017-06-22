@@ -22,8 +22,6 @@ class UsersTableSeeder extends Seeder
       'email' => 'educational.botnet@gmail.com',
       'password' => bcrypt('adminbotnet'),
       'admin' => true,
-      'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-      'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
     ]);
 
     /* Création de quelques utilisateurs */
@@ -33,8 +31,6 @@ class UsersTableSeeder extends Seeder
         'email' => 'toto' .$i .'@test.com',
         'password' => bcrypt('totototo' .$i),
         'admin' => rand(0, 1),
-        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
       ]);
     }
   }
