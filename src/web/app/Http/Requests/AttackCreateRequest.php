@@ -27,7 +27,6 @@ class AttackCreateRequest extends FormRequest
       'name' => 'required|max:255',
       'target' => 'required|max:255',
       'port' => 'required|alpha_num',
-      'start' => 'required|date|after:now',
       'duration' => 'required|alpha_num',
       'bots_number' => 'required|alpha_num'
     ];

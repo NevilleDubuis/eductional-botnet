@@ -87,7 +87,6 @@ class AttackRepository
       $attack->target = $inputs['target'];
       $attack->port = $inputs['port'];
       $attack->method_id = $inputs['method_selected'];
-      $attack->start = $inputs['start'];
       $attack->duration = $inputs['duration'];
       $attack->bots_number = $inputs['bots_number'];
 
