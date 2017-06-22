@@ -14,7 +14,8 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th></th>
+                  <th>MAC</th>
                   <th>Nom</th>
                   <th>Sytem d'exploitation</th>
                   <th>cpu</th>
@@ -24,6 +25,7 @@
               <tbody>
                 @foreach ($bots as $bot)
                   <tr>
+                    <td class="text-primary"><i class="fa fa-circle bot {{ $bot->state }}" aria-hidden="true "></i></td>
                     <td>{{ $bot->mac_address }}</td>
                     <td class="text-primary"><strong>{{ $bot->name }}</strong></td>
                     <td class="text-primary"><strong>{{ $bot->operating_system }}</strong></td>

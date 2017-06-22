@@ -30,3 +30,14 @@ class AttacksTableSeeder extends Seeder
       }
     }
 }
+
+
+DB::table('attacks')->insert([
+  'name' => 'Attack_1',
+  'target' => '192.168.12.157',
+  'port'  => '80',
+  'user_id' => 1,
+  'method_id' => 1,
+  'bots_number' => 1,
+  'duration' => 1,
+]);

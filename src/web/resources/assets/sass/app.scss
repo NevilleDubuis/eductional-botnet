@@ -24,3 +24,17 @@
     color: green;
   }
 }
+
+.bot {
+  &.disconnected {
+    color: grey;
+  }
+
+  &.connected {
+    color: green;
+  }
+
+  &.attacking {
+    color: red;
+  }
+}
