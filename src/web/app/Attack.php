@@ -134,4 +134,19 @@ class Attack extends Model
   public function minutesFromStart() {
     return Carbon::parse($this->start)->diffInMinutes(Carbon::now());
   }
+
+  /**
+  * return the current state of the attack
+  *
+  * @return String;
+  */
+  public function state() {
+    if ($this->start and $this->finish) {
+      return 'finished';
+    } elseif ($this->start and !$this->finish) {
+      return 'running';
+    } else {
+      return 'waiting';
+    }
+  }
 }
