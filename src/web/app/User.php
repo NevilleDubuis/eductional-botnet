@@ -36,7 +36,7 @@ class User extends Authenticatable
   /**
    * Liaison n:n avec groups
    *
-   * @var array
+   * @return array
    */
    public function groups()
    {

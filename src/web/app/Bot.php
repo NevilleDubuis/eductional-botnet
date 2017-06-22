@@ -35,7 +35,7 @@ class Bot extends Model
   public static function resetBotsConnection()
   {
     Bot::where(
-      'updated_at',
+      'connected_at',
       '<',
       Carbon::now()->subSeconds(Bot::maxSecondsBeforeDisconnect())->toDateTimeString()
     )
@@ -52,6 +52,17 @@ class Bot extends Model
   public function scopeCurrentlyConnected($query)
   {
     return $query->where('state', 'connected')->orWhere('state', 'attacking');
+  }
+
+  /**
+  * Scope a query to get only idle bots.
+  *
+  * @param \Illuminate\Database\Eloquent\Builder $query
+  * @return \Illuminate\Database\Eloquent\Builder
+  */
+  public function scopeIdle($query)
+  {
+    return $query->ofState('connected')->where('attack_id', null);
   }
 
   /**
@@ -89,6 +100,16 @@ class Bot extends Model
   }
 
   /**
+  * Get the attack that owns the bot.
+  *
+  * @return App\Attack;
+  */
+  public function attack()
+  {
+    return $this->belongsTo('App\Attack', 'attack_id');
+  }
+
+  /**
   * true if we need iformation form bot.
   *
   * @return Boolean
@@ -99,12 +120,22 @@ class Bot extends Model
   }
 
   /**
-  * Get the attack that owns the bot.
+  * check if bot needs to be said start attack
   *
-  * @return App\Attack;
+  * @return Boolean
   */
-  public function attack()
+  public function needAttackStart()
   {
-    return $this->belongsTo('App\Attack', 'attack_id');
+    return ($this->state == 'connected' and $this->attack()->count());
+  }
+
+  /**
+  * check if bot needs to be said start attack
+  *
+  * @return Boolean
+  */
+  public function needAttackEnd()
+  {
+    return ($this->state == 'attacking' and $this->attack()->count() and $this->attack()->first()->finish);
   }
 }

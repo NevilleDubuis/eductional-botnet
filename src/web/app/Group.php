@@ -23,7 +23,7 @@ class Group extends Model
   /**
    * Liaison n:n avec users
    *
-   * @var array
+   * @return array
    */
 
    public function users()

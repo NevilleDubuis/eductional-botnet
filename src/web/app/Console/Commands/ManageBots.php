@@ -48,21 +48,25 @@ class ManageBots extends Command
 
     while(true)
     {
-      $this->checkBotsConnection();
-      $this->startPossibleAttacks();
+      $this->manageBots();
+      $this->manageAtacks();
       sleep($timeBetweenchecks);
     }
   }
 
-  private function checkBotsConnection()
+  private function manageBots()
   {
     Log::info('--> Check bots connection');
 
     Bot::resetBotsConnection();
   }
 
-  private function startPossibleAttacks()
+  private function manageAtacks()
   {
     Log::info('--> Start possible attack');
+
+    Attack::stopFinished();
+    Attack::manageRunning();
+    Attack::startWaiting();
   }
 }
