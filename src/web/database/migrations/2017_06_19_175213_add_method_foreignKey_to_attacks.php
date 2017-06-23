@@ -16,7 +16,7 @@ class AddMethodForeignKeyToAttacks extends Migration
       Schema::table('attacks', function (Blueprint $table) {
         $table->integer('method_id')->unsigned();
         $table->foreign('method_id')->references('id')->on('methods')
-            ->onDelete('restrict')
+            ->onDelete('cascade')
             ->onUpdate('restrict');
       });
     }

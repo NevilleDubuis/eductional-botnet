@@ -39,7 +39,8 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-Allez faire la configuration dans le fichiers .env
+Allez faire la configuration dans le fichiers use Illuminate\Support\Str;
+.env
 
 ```sh
 php artisan migrate
@@ -49,4 +50,10 @@ php artisan serve
 ```sh
 php artisan migrate:refresh
 php artisan db:seeds
+```
+
+### Mise à jour de doctrine/dbal
+```sh
+composer require doctrine/dbal
+composer update
 ```

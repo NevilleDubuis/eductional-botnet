@@ -22,7 +22,7 @@ class CreateAttackTable extends Migration
         $table->datetime('finish');
         $table->integer('user_id')->unsigned();
         $table->foreign('user_id')->references('id')->on('users')
-            ->onDelete('restrict')
+            ->onDelete('cascade')
             ->onUpdate('restrict');
         $table->integer('bots_number');
         $table->timestamps();
