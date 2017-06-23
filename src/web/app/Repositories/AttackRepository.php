@@ -26,13 +26,11 @@ class AttackRepository
   {
     return $this->attack->running();
   }
-
-
+  
   public function waiting()
   {
     return $this->attack->waiting();
   }
-
 
   /**
     * @param array $data

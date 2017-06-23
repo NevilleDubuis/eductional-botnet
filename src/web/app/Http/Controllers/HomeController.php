@@ -34,6 +34,7 @@ class HomeController extends Controller
   {
     $attacks = $this->attackRepository->all();
     $bots = $this->botRepository->all();
+
     $runningAttacks = $this->attackRepository->running()->count();
     $waitingAttacks = $this->attackRepository->waiting()->count();
     return view('home', compact('attacks', 'bots', 'runningAttacks', 'waitingAttacks'));

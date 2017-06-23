@@ -41,9 +41,9 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>5</td>
-                  <td>3</td>
-                  <td>2</td>
+                  <td>fix value : 6</td>
+                  <td>fix value : 4</td>
+                  <td>fix value : 2</td>
                 </tr>
               </tbody>
             </table>
