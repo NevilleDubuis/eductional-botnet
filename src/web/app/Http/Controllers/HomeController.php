@@ -7,6 +7,9 @@ use App\Repositories\BotRepository;
 
 use Illuminate\Http\Request;
 
+/**
+ * [HomeController description]
+ */
 class HomeController extends Controller
 {
   protected $attackRepository;

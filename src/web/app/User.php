@@ -29,6 +29,10 @@ class User extends Authenticatable
     'password', 'remember_token',
   ];
 
+  /**
+   * Contrôle si le user est un administrateur
+   * @return boolean valeur dans la colonne admin de la table users
+   */
   public function isAdmin () {
     return $this->admin;
   }

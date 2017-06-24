@@ -11,7 +11,9 @@ use App\Repositories\GroupRepository;
 use App\Http\Requests\GroupCreateRequest;
 use App\Http\Requests\GroupUpdateRequest;
 
-
+/**
+ * [groupsController Gestion des groupes d'utilisateurs
+ */
 class groupsController extends Controller
 {
 
@@ -29,6 +31,11 @@ class groupsController extends Controller
       $this->groupRepository = $groupRepository;
    }
 
+/**
+ * Show the application dashboard.
+ *
+ * @return @return \Illuminate\Http\Response
+ */
   public function index()
   {
     $this->checkAdmin();
@@ -38,6 +45,12 @@ class groupsController extends Controller
     return view('groups/index', compact('groups', 'links'));
   }
 
+  /**
+   * Renvoie la vue d'édition d'un group
+   *
+   * @param  [type] $id ID du group à editer
+   * @return [type]     Vue d'édition du group
+   */
   public function edit($id)
   {
     $this->checkAdmin();
@@ -47,6 +60,13 @@ class groupsController extends Controller
     return view('groups/edit',  compact('group', 'users'));
   }
 
+  /**
+   * Mise à jour des données d'un group
+   *
+   * @param  GroupUpdateRequest $request Class de validati
+   * @param  [type]             $id      ID du group à faire l'update
+   * @return [type]                      Vue Index avec message de confirmation
+   */
   public function update(GroupUpdateRequest $request, $id)
   {
     $this->checkAdmin();
@@ -68,6 +88,11 @@ class groupsController extends Controller
     return view('groups/create', compact('users'));
   }
 
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @return Response
+   */
   public function store(GroupCreateRequest $request)
   {
     $this->checkAdmin();
@@ -101,6 +126,11 @@ class groupsController extends Controller
     return redirect()->route('groups.index')->withOk("Le group a été supprimé.");
   }
 
+  /**
+   * Contrôle si le user connecté est un administrateur
+   *
+   * @return [bool] Rien si admin et abord si non admin
+   */
   private function checkAdmin()
   {
     // check user permission

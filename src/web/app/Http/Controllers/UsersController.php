@@ -14,6 +14,9 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Http\Requests\UserCreateRequest;
 
 
+/**
+ * [UsersController Gestion des utilisateurs
+ */
 class UsersController extends Controller
 {
 
@@ -49,7 +52,8 @@ class UsersController extends Controller
   /**
    * Lister les utilisateur selon un id de groupe
    *
-   * @return
+   * @param  [type] $group  ID du groupe sélectionné
+   * @return [type]         Vue avec liste de users du groupe
    */
   public function indexGroup($group) {
     $users = $this->userRepository->getWithGroupForPaginate($group, $this->nbrPerPage);
@@ -58,6 +62,12 @@ class UsersController extends Controller
     return view('users.indexGroup', compact('users', 'links', 'group'));
   }
 
+  /**
+   * Renvoie la vue d'édition d'un user
+   *
+   * @param  [type] $id ID du user à editer
+   * @return [type]     Vue d'édition du user
+   */
   public function edit($id)
   {
     $this->checkAdmin();
@@ -66,6 +76,13 @@ class UsersController extends Controller
     return view('users/edit',  compact('user'));
   }
 
+/**
+ * Mise à jour des données d'un user
+ *
+ * @param  UserUpdateRequest $request Class de validation
+ * @param  [type]            $id      ID du user à faire l'update
+ * @return [type]                     Vue Index avec message de confirmation
+ */
   public function update(UserUpdateRequest $request, $id)
   {
     $this->checkAdmin();
@@ -124,6 +141,11 @@ class UsersController extends Controller
     return redirect()->route('users.index')->withOk("L'utilisateur a été supprimé.");
   }
 
+  /**
+   * Contrôle si le user connecté est un administrateur
+   * 
+   * @return [bool] Rien si admin et abord si non admin
+   */
   private function checkAdmin()
   {
     // check user permission
