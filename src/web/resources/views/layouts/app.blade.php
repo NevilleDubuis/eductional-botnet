@@ -44,12 +44,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                       <li><a href="{{ url('/home') }}">Home</a></li>
-                      @if (Auth::user() && Auth::user()->isAdmin())
-                        <li><a href="{{ route('users.index') }}">Users</a></li>
-                        <li><a href="{{ route('groups.index') }}">Groups</a></li>
+                      @if (Auth::user())
+                        @if (Auth::user()->isAdmin())
+                          <li><a href="{{ route('users.index') }}">Users</a></li>
+                          <li><a href="{{ route('groups.index') }}">Groups</a></li>
+                        @endif
+                        <li><a href="{{ route('bots.index') }}">Bots</a></li>
+                        <li><a href="{{ route('attacks.index') }}">Attacks</a></li>
                       @endif
-                      <li><a href="{{ route('bots.index') }}">Bots</a></li>
-                      <li><a href="{{ route('attacks.index') }}">Attacks</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
