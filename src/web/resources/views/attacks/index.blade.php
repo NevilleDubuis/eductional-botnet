@@ -27,21 +27,23 @@
               </thead>
               <tbody>
                 @foreach ($attacks as $attack)
-                  <tr>
-                    <td class="text-primary"><i class="fa fa-circle attack {{ $attack->state() }}" aria-hidden="true "></i></td>
-                    <td class="text-primary"><strong>{{ $attack->name }}</strong></td>
-                    <td class="text-primary"><strong>{{ $attack->user->name }}</strong></td>
-                    <td class="text-primary"><strong>{{ $attack->target }}</strong></td>
-                    <td class="text-primary"><strong>{{ $attack->port }}</strong></td>
-                    <td class="text-primary"><strong>{{ $attack->method->name }}</strong></td>
-                    <td class="text-primary"><strong>{{ $attack->bots_number }}</strong></td>
-                    <td class="text-primary"><strong>{{ $attack->duration }}</strong></td>
-                    <td>
-                      {!! Form::open(['method' => 'DELETE', 'route' => ['attacks.destroy', $attack->id]]) !!}
-                        {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cette attaque ?\')']) !!}
-                      {!! Form::close() !!}
-                    </td>
-                  </tr>
+                  @if($currentUser->isAdmin() || $currentUser->id === $attack->user_id)
+                    <tr>
+                      <td class="text-primary"><i class="fa fa-circle attack {{ $attack->state() }}" aria-hidden="true "></i></td>
+                      <td class="text-primary"><strong>{{ $attack->name }}</strong></td>
+                      <td class="text-primary"><strong>{{ $attack->user->name }}</strong></td>
+                      <td class="text-primary"><strong>{{ $attack->target }}</strong></td>
+                      <td class="text-primary"><strong>{{ $attack->port }}</strong></td>
+                      <td class="text-primary"><strong>{{ $attack->method->name }}</strong></td>
+                      <td class="text-primary"><strong>{{ $attack->bots_number }}</strong></td>
+                      <td class="text-primary"><strong>{{ $attack->duration }}</strong></td>
+                      <td>
+                        {!! Form::open(['method' => 'DELETE', 'route' => ['attacks.destroy', $attack->id]]) !!}
+                          {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cette attaque ?\')']) !!}
+                        {!! Form::close() !!}
+                      </td>
+                    </tr>
+                  @endif
                 @endforeach
               </tbody>
             </table>

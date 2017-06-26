@@ -39,9 +39,10 @@ class AttacksController extends Controller
   public function index()
   {
     $attacks = $this->attackRepository->getPaginate($this->nbrPerPage);
+    $currentUser = $this->getCurrentUser();
     $links = $attacks->setPath('')->render();
 
-    return view('attacks/index', compact('attacks', 'links'));
+    return view('attacks/index', compact('attacks', 'links', 'currentUser'));
   }
 
   /**
