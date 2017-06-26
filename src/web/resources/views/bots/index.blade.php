@@ -7,6 +7,13 @@
         <br>
 
         <div class="col-sm-offset-2 col-sm-8">
+          <div class="pull-right">
+            connecté <i class="fa fa-circle bot connected" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
+            occupé <i class="fa fa-circle bot attacking" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
+            déconnecté <i class="fa fa-circle bot disconnected" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
+          </div>
+        </div>
+        <div class="col-sm-offset-2 col-sm-8">
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 class="panel-title">Liste des Bots</h3>

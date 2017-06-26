@@ -7,6 +7,13 @@
         <br>
 
         <div class="col-sm-12">
+          <div class="pull-right">
+            attente <i class="fa fa-circle attack waiting" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
+            attaque <i class="fa fa-circle attack running" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
+            terminé <i class="fa fa-circle attack finished" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
+          </div>
+        </div>
+        <div class="col-sm-12">
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 class="panel-title">Liste des Attacks</h3>
