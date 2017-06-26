@@ -7,6 +7,14 @@
         <br>
 
         <div class="col-sm-offset-2 col-sm-8">
+          <a href="{{ route('groups.create') }}" class="btn btn-success btn-sm pull-right">Créer un groupe</a>
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-8">
+          &nbsp;
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-8">
           @if(session()->has('ok'))
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
           @endif
@@ -44,7 +52,6 @@
               </tbody>
             </table>
           </div>
-          <a href="{{ route('groups.create') }}" class="btn btn-success btn-block">Créer un groupe</a>
           {!! $links !!}
         </div>
       </div>

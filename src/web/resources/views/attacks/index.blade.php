@@ -7,11 +7,21 @@
         <br>
 
         <div class="col-sm-12">
-          <div class="pull-right">
-            attente <i class="fa fa-circle attack waiting" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
-            attaque <i class="fa fa-circle attack running" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
-            terminé <i class="fa fa-circle attack finished" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
+          <div class="row">
+            <div class="col-sm-6">
+              attente <i class="fa fa-circle attack waiting" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
+              attaque <i class="fa fa-circle attack running" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
+              terminé <i class="fa fa-circle attack finished" aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-sm-6">
+              <div class="pull-right">
+                <a href="{{ route('attacks.create') }}" class="btn btn-success  btn-sm">Créer une attaque</a>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="col-sm-12">
+          &nbsp;
         </div>
         <div class="col-sm-12">
           <div class="panel panel-primary">
@@ -55,7 +65,6 @@
               </tbody>
             </table>
           </div>
-          <a href="{{ route('attacks.create') }}" class="btn btn-success btn-block">Créer une attaque</a>
           {!! $links !!}
         </div>
       </div>

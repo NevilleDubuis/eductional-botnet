@@ -7,6 +7,14 @@
         <br>
 
         <div class="col-sm-offset-2 col-sm-8">
+          <a href="{{ route('users.create') }}" class="btn btn-success btn-sm pull-right">Créer utilisateur</a>
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-8">
+          &nbsp;
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-8">
           @if(session()->has('ok'))
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
           @endif
@@ -47,7 +55,6 @@
               </tbody>
             </table>
           </div>
-          <a href="{{ route('users.create') }}" class="btn btn-success btn-block">Créer utilisateur</a>
           {!! $links !!}
         </div>
       </div>
