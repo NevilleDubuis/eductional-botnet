@@ -64,9 +64,14 @@
       var font_size = 10;
       var columns = c.width/font_size
       var drops = [];
+      var dropsSpeed = [];
 
       for(var x = 0; x < columns; x++) {
         drops[x] = Math.ceil(Math.random() * c.height);
+      }
+
+      for(var x = 0; x < columns; x++) {
+        dropsSpeed[x] = 1 + (Math.random() - 0.5);
       }
 
       function draw() {
@@ -82,9 +87,10 @@
 
           if(drops[i] * font_size > c.height && Math.random() > 0.975) {
             drops[i] = 0;
+            dropsSpeed[i] = 1 + (Math.random() - 0.5);
           }
 
-          drops[i]++;
+          drops[i] += dropsSpeed[i];
         }
       }
 
