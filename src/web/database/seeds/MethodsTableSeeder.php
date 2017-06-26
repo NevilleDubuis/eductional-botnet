@@ -15,19 +15,7 @@ class MethodsTableSeeder extends Seeder
         DB::table('methods')->delete();
 
         DB::table('methods')->insert([
-          'name' => 'Flood ICMP',
-        ]);
-
-        DB::table('methods')->insert([
-          'name' => 'Flood SYN',
-        ]);
-
-        DB::table('methods')->insert([
-          'name' => 'Flood UDP',
-        ]);
-
-        DB::table('methods')->insert([
-          'name' => 'Smurf',
+          'name' => 'HTTP Flood (GET)',
         ]);
     }
 }

@@ -15,7 +15,7 @@ use App\Http\Requests\UserCreateRequest;
 
 
 /**
- * [UsersController Gestion des utilisateurs
+ * UsersController Gestion des utilisateurs
  */
 class UsersController extends Controller
 {
@@ -143,7 +143,7 @@ class UsersController extends Controller
 
   /**
    * Contrôle si le user connecté est un administrateur
-   * 
+   *
    * @return [bool] Rien si admin et abord si non admin
    */
   private function checkAdmin()

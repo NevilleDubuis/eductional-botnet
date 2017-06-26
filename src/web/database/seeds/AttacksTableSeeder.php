@@ -24,7 +24,7 @@ class AttacksTableSeeder extends Seeder
           'finish' => Carbon::tomorrow(),
           'user_id' => rand(1,9),
           'method_id' => '1',
-          'bots_number' => rand(3568,10000000),
+          'bots_number' => rand(358,100000),
           'duration' => 10,
         ]);
       }
