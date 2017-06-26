@@ -55,7 +55,7 @@ class UsersController extends Controller
    * @return [type]         Vue avec liste de users du groupe
    */
   public function indexGroup($group) {
-    $users = $this->userRepository->getWithGroupForPaginate($group, $this->nbrPerPage);
+    $users = $this->userRepository->getWithGroupForPaginate($group, parent::$nbrPerPage);
     $links = $users->render();
 
     return view('users.indexGroup', compact('users', 'links', 'group'));
