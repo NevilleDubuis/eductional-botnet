@@ -58,3 +58,6 @@ CMakeLists.txt.user*
 *.vbak
 *.lck
 
+# Node build artifacts
+node_modules
+npm-debug.log
