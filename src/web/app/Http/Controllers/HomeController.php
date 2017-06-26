@@ -40,6 +40,15 @@ class HomeController extends Controller
 
     $runningAttacks = $this->attackRepository->running()->count();
     $waitingAttacks = $this->attackRepository->waiting()->count();
-    return view('home', compact('attacks', 'bots', 'runningAttacks', 'waitingAttacks'));
+    $finishedAttacks = $this->attackRepository->finished()->count();
+
+    $currentlyConnectedBots = $this->botRepository->currentlyConnected()->count();
+    $attackingBots = $this->botRepository->attacking()->count();
+    $disconnectedBots = $this->botRepository->disconnected()->count();
+
+    return view('home',
+            compact('attacks', 'bots',
+                    'runningAttacks', 'waitingAttacks', 'finishedAttacks',
+                    'currentlyConnectedBots', 'attackingBots', 'disconnectedBots'));
   }
 }

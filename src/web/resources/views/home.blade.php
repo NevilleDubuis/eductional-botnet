@@ -20,6 +20,7 @@
                   <th>Attacks</th>
                   <th>En cours</th>
                   <th>En attente</th>
+                  <th>Terminées</th>
                 </tr>
               </thead>
               <tbody>
@@ -27,6 +28,7 @@
                   <td>{{ $attacks->count() }}</td>
                   <td>{{ $runningAttacks }}</td>
                   <td>{{ $waitingAttacks }}</td>
+                  <td>{{ $finishedAttacks }}</td>
                 </tr>
               </tbody>
             </table>
@@ -35,15 +37,17 @@
               <thead>
                 <tr>
                   <th>Bots</th>
-                  <th>Actifs</th>
-                  <th>Disponibles</th>
+                  <th>Connectés</th>
+                  <th>Attacking</th>
+                  <th>Déconnectés</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>fix value : 6</td>
-                  <td>fix value : 4</td>
-                  <td>fix value : 2</td>
+                  <td>{{ $bots->count() }}</td>
+                  <td>{{ $currentlyConnectedBots }}</td>
+                  <td>{{ $attackingBots }}</td>
+                  <td>{{ $disconnectedBots }}</td>
                 </tr>
               </tbody>
             </table>

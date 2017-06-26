@@ -21,6 +21,21 @@ class BotRepository
     return $this->bot->get();
   }
 
+  public function currentlyConnected()
+  {
+    return $this->bot->currentlyConnected();
+  }
+
+  public function attacking()
+  {
+    return $this->bot->attacking();
+  }
+
+  public function disconnected()
+  {
+    return $this->bot->disconnected();
+  }
+
   /**
     * @param array $data
     * @return mixed

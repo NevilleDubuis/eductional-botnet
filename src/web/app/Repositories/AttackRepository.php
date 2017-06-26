@@ -32,6 +32,10 @@ class AttackRepository
     return $this->attack->waiting();
   }
 
+  public function finished() {
+    return $this->attack->finnished();
+  }
+
   /**
     * @param array $data
     * @return mixed
