@@ -26,7 +26,7 @@ class AttackRepository
   {
     return $this->attack->running();
   }
-  
+
   public function waiting()
   {
     return $this->attack->waiting();
@@ -74,11 +74,24 @@ class AttackRepository
       ->first();
   }
 
+  /**
+   * Pagination sur la liste des attaques
+   *
+   * @param  integer $n nombre d'attaques par page
+   * @return Attack  attaque par rapport à la pagination
+   */
   public function getPaginate($n)
   {
       return $this->attack->paginate($n);
   }
 
+  /**
+   * Sauvegarde des données attack
+   *
+   * @param  Attack   $attack
+   * @param  Array    $inputs données saisie depuis un formulaire
+   * @return void
+   */
   private function save(Attack $attack, Array $inputs)
   {
       $attack->name = $inputs['name'];
@@ -91,6 +104,12 @@ class AttackRepository
       $attack->save();
   }
 
+  /**
+   * Enregistrement d'une nouvelle attaque
+   *
+   * @param  Array  $inputs inputs depuis le formulaire view/attakcs/create
+   * @return Attack $attack
+   */
   public function store(Array $inputs, User $user)
   {
       $attack = new $this->attack;
@@ -100,6 +119,12 @@ class AttackRepository
       return $attack;
   }
 
+  /**
+   * Suppression d'une attaque
+   *
+   * @param  integer $id id de l'attaque à supprimer
+   * @return void
+   */
   public function destroy($id)
   {
       $this->getById($id)->delete();

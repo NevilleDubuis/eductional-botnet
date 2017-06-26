@@ -12,7 +12,7 @@ class Controller extends BaseController
   use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
   /**
-  * @var integer $nbrPerPage nombre d'élement par page
+  * @var integer $nbrPerPage nombre d'élements affichés par page
   */
   protected static $nbrPerPage = 10;
 }
