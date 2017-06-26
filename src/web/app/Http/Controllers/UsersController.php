@@ -21,7 +21,6 @@ class UsersController extends Controller
 {
 
   protected $userRepository;
-  protected $nbrPerPage = 5;
 
   /**
    * Create a new controller instance.
@@ -43,7 +42,7 @@ class UsersController extends Controller
   public function index()
   {
     $this->checkAdmin();
-    $users = $this->userRepository->getPaginate($this->nbrPerPage);
+    $users = $this->userRepository->getPaginate(parent::$nbrPerPage);
     $links = $users->setPath('')->render();
 
     return view('users/index', compact('users', 'links'));

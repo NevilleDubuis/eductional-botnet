@@ -10,4 +10,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
   use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+  /**
+  * @var integer $nbrPerPage nombre d'élement par page
+  */
+  protected static $nbrPerPage = 10;
 }

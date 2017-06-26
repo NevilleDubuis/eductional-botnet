@@ -18,7 +18,6 @@ class groupsController extends Controller
 {
 
   protected $groupRepository;
-  protected $nbrPerPage = 5;
 
   /**
    * Create a new controller instance.
@@ -39,7 +38,7 @@ class groupsController extends Controller
   public function index()
   {
     $this->checkAdmin();
-    $groups = $this->groupRepository->getPaginate($this->nbrPerPage);
+    $groups = $this->groupRepository->getPaginate(parent::$nbrPerPage);
     $links = $groups->setPath('')->render();
 
     return view('groups/index', compact('groups', 'links'));

@@ -17,7 +17,6 @@ class AttacksController extends Controller
 
   protected $attackRepository;
   protected $methodRepository;
-  protected $nbrPerPage = 10;
 
   /**
    * Create a new controller instance.
@@ -38,7 +37,7 @@ class AttacksController extends Controller
    */
   public function index()
   {
-    $attacks = $this->attackRepository->getPaginate($this->nbrPerPage);
+    $attacks = $this->attackRepository->getPaginate(parent::$nbrPerPage);
     $currentUser = $this->getCurrentUser();
     $links = $attacks->setPath('')->render();
 
@@ -60,7 +59,7 @@ class AttacksController extends Controller
   /**
   * Store information received by create form
   *
-  * @param inputs from create form passed by request
+  * @param AttackCreateRequest $request inputs from create form passed by request
   */
   public function store(AttackCreateRequest $request)
   {
@@ -72,6 +71,7 @@ class AttacksController extends Controller
   /**
   * Delete attacks
   *
+  * @param $id   attack id to be deleted
   * @return Response
   */
 
@@ -84,7 +84,7 @@ class AttacksController extends Controller
   /**
   * Get the current user
   *
-  * @return user
+  * @return User user current authenticated user
   */
   private function getCurrentUser() {
     return Auth::user();
