@@ -66,7 +66,7 @@
       var drops = [];
 
       for(var x = 0; x < columns; x++) {
-        drops[x] = 1;
+        drops[x] = Math.ceil(Math.random() * c.height);
       }
 
       function draw() {
@@ -80,7 +80,7 @@
           var text = chinese[Math.floor(Math.random()*chinese.length)];
           ctx.fillText(text, i*font_size, drops[i]*font_size);
 
-          if(drops[i]*font_size > c.height && Math.random() > 0.975) {
+          if(drops[i] * font_size > c.height && Math.random() > 0.975) {
             drops[i] = 0;
           }
 
